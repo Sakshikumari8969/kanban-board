@@ -1,0 +1,21 @@
+.create-container{
+    margin:auto;
+width:40%;
+text-align: center;
+border:3px solid rgb(3, 3, 16);
+border-radius: 5px;
+padding:2px;
+background-color: rgb(237, 215, 18);
+box-shadow: 0 0 10px rgb(244, 157, 6);
+
+}
+
+.create-container h1{
+    color: rgb(60, 42, 6);
+    text-align:center;
+}
+
+.create-container form{
+    border: 10px;
+
+}
