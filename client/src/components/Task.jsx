@@ -6,11 +6,36 @@ export default function Task() {
   const [review, setReview] = useState("");
   const [testing, setTesting] = useState("");
   const [done, setDone] = useState("");
+
+//Todo:Any one:
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (todo||doing||review ||testing || done) {
+      console.log(todo);
+      console.log(doing);
+      console.log(review);
+      console.log(testing);
+      console.log(done);
+
+      setTodo("")
+      setDoing("")
+      setReview("")
+      setTesting("")
+      setDone("")
+      
+    } else {
+      alert("Please enter any of the fields");
+    }};
+
+  
   return (
-    < >
+    <>
     <div className="task-container">
-      <div  >
+    <form onSubmit={handleSubmit}>
         <h3>ToDo</h3>
+        
         <textarea
           value={todo}
           onChange={(e) => {
@@ -27,7 +52,7 @@ export default function Task() {
           Add
         </button>
         <p>{todo}</p>
-      </div>
+     
       <div style={{ writingMode: "" }}>
         <h3>Doing</h3>
         <textarea
@@ -98,7 +123,9 @@ export default function Task() {
         Add
       </button>
       <p>{done}</p>
+      </form>
       </div>
+      
     </>
   );
 }

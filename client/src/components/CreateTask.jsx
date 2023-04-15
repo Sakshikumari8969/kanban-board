@@ -7,10 +7,25 @@ export default function TaskCreate() {
  const [title, setTitle] = useState('')
   const [description, setDescription] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (title&&description) {
+      console.log(title);
+      console.log(description);  
+      setTitle('')
+      setDescription('')
+      
+    } else {
+      alert("Please enter the complete fields");
+    }
+
+  };
 
   return (
     <>
       {/* <h3>Task Title</h3> */}
+      <form onSubmit={handleSubmit}>
       <section>
                 <label>Task Title : </label>
                 <input type="text" value={title}onChange={(e) => setTitle(e.target.value)} />
@@ -24,6 +39,7 @@ export default function TaskCreate() {
         }}
       ></textarea>{" "}
       <button className="btn btn-primary mx-2" onClick={clickAdd}> Add </button>
+      </form>
     </>
   );
 }

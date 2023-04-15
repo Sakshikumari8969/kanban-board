@@ -15,7 +15,7 @@ exports.taskCreate = async (req, res) => {
     const { error, value } = taskCreateBodySchema.validate(data);
 
   if (error) {
-    return res.status(400).json(error);
+    return res.status(400).json({error});
   }
 
   const board = value.board;
@@ -43,7 +43,7 @@ exports.taskCreate = async (req, res) => {
     title: value.title,
     description: value.description,
     status: value.status,
-    user: user.id,
+    members: user.id,
     board: board,
   });
   return res.json({ task });
@@ -51,32 +51,47 @@ exports.taskCreate = async (req, res) => {
   return res.status(500).json(error.message)
 }}
 // -----------------------UPDATE TASK-----------------------------------
-//todo:
-exports.taskUpdate = async function (req, res) {
+
+exports.taskUpdate = async (req, res)=>{
   try {
     let taskId = req.params.taskId;
+    console.log(taskId);
     let data = req.body;
     let{title,status,description,board,members}=data
     if (!mongoose.isValidObjectId(taskId))
       return res.status(400).send({ message: "Task Id is not valid" });
       if (Object.keys(data).length == 0)
       return res.status(400).json({ message: "Data to update is missing" });
-   
-      // try {
-      //   await taskUpdateJoi.validateAsync(data);
-      // } catch (err) {
-      //   return res.status(500).json({ message: err.message });
-      // }
+  //  console.log(data);
+      try {
+        await taskUpdateJoi.validateAsync(data);
+      } catch (err) {
+        return res.status(500).json({ message: err.message });
+      }
   
     let updateTask = await Task.findByIdAndUpdate(
-      { taskId },
-      {isDeleted:false, $set: {title:title,status:status,description:description,members:members,board:board } }
+      {_id:taskId,isDeleted:false},
+      {$set: {title:title,status:status,description:description,members:members,board:board }},{new:true} 
     );
     return res.json({updateTask});
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
+
+// -----------------------GET TASK BY TASK ID-----------------------------------
+
+exports.getTaskBytaskId=async function(req,res){
+  try {
+    let taskId=req.params.taskId
+    if(!mongoose.isValidObjectId(taskId)) return res.status(400).send({message:"taskId is not valid"})
+  
+    let getTask=await Task.findById(taskId)
+    return res.json({data:getTask})
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
 
 // ----------------------DELETE TASK------------------------------------
 

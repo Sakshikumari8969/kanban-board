@@ -2,8 +2,6 @@ const mongoose=require("mongoose")
 const Comment = require("../models/commentModel");
 const Task = require("../models/taskModel");
 
-const {commentCreateJoi,commentUpdateJoi}=require("../validation/joiValidation")
-
 // -----------------COMMENT CREATE-----------------------------------------
 
 exports.commentCreate = async function (req, res) {
@@ -11,11 +9,6 @@ exports.commentCreate = async function (req, res) {
     let data = req.body;
     if (Object.keys(data).length == 0)
       return res.status(400).json({ message: "Data is missing" });
-      try {
-        await commentCreateJoi.validateAsync(data);
-      } catch (err) {
-        return res.status(500).json({ message: err.message });
-      }
       
     let comments= await Comment.create(data);
     return res.status(201).send({ message: "Comment created successfully",comments });
@@ -30,18 +23,14 @@ exports.commentUpdate = async function (req, res) {
   try {
     let commentId = req.params.commentId;
     let data = req.body;
-    let {userId,task}=data
+    let {userId,comment,board,task}=data
     if (Object.keys(data).length == 0) return res.status(400).json({ msg: "please provide data to update" });
     if (!mongoose.isValidObjectId(commentId))
       return res.status(400).json({ message: "Comment Id is not valid" });
-    try {
-      await commentUpdateJoi.validateAsync(data);
-    } catch (err) {
-      return res.status(500).json({ message: err.message });
-    }
+    
     let comments = await Comment.findByIdAndUpdate(
-       commentId ,
-      { $set: {userId:userId,task:task } },
+       {_id:commentId ,isDeleted:false},
+      { $set: {userId:userId,comment:comment,task:task,board:board } },
       { new: true }
     );
     return res

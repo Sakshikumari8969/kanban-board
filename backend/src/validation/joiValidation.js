@@ -42,15 +42,15 @@ exports.boardCreateDataValidator=joi.object({
     
 // });
 
-exports.commentCreateJoi=joi.object({
+// exports.commentCreateJoi=joi.object({
     
-    task:joi.string().required(),
+//     comment:joi.string().required(),
    
-});
+// });
 
-exports.commentUpdateJoi=joi.object({
-    task:joi.string().optional()
-});
+// exports.commentUpdateJoi=joi.object({
+//     comment:joi.string().optional()
+// });
 
 
 
