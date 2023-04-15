@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CreateUser.css";
+import "../styles/CreateUser.css";
 
 export default function CreateUser() {
   const [name, setName] = useState("");

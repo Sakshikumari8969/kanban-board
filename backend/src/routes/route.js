@@ -25,7 +25,7 @@ router.post(
 );
 router.get("/api/boards", boardController.getBoards);
 router.get(
-  "/api/users/:userId/boards",
+  "/api/users/boards",
   authenticationMiddleware,
   boardController.getAllBoardByUserId
 );
@@ -43,7 +43,11 @@ router.put(
 //--------------------------TASK ROUTER:
 
 router.post("/api/tasks", authenticationMiddleware, taskController.taskCreate);
-router.get("/api/tasks/:taskId", authenticationMiddleware, taskController.getTaskBytaskId);
+router.get(
+  "/api/tasks/:taskId",
+  authenticationMiddleware,
+  taskController.getTaskBytaskId
+);
 router.put(
   "/api/users/task/:taskId",
   authenticationMiddleware,

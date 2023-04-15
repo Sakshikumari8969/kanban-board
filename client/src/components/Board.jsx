@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Board.css";
+import "../styles/Board.css";
 export default function Board() {
   const [board, setBoard] = useState("");
   const [name, setName] = useState("");

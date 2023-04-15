@@ -17,10 +17,12 @@ exports.createBoard = async function (req, res) {
       return res
         .status(400)
         .send({ message: "Data to create board is missing" });
-    if (data.user == req.user.id) {
-      let board = await Board.create(data);
-      return res.json({ board });
-    }
+
+    let board = await Board.create({
+      boardName: data.boardName,
+      user: req.user.id,
+    });
+    return res.json({ board });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -47,6 +49,8 @@ exports.getAllBoardByUserId = async function (req, res) {
   try {
     let user = req.user;
     let userId = user.id;
+
+    console.log(user, userId);
 
     const boards = await Board.find({
       user: userId,
@@ -91,7 +95,7 @@ exports.updateBoard = async function (req, res) {
       { $set: { boardName: boardName, user: user } },
       { new: true }
     );
-    
+
     if (!boards) {
       return res
         .status(400)

@@ -1,17 +1,143 @@
-main {
-  padding: 10px;
-  border-radius: 10 px;
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.868);
 }
 
 header {
   display: flex;
   gap: 10px;
-  background-color: rgb(61, 16, 239);
-  margin-bottom: 10px;
-  padding: 20px;
+  padding: 10px;
+  background-color: dodgerblue;
 }
 
-header > div {
-  padding: 4px;
+header a {
+  border: 1px solid #115a75;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
+}
+header a:hover {
+  background-color: rgb(25, 126, 226);
+}
+main {
+  margin: 20px;
+}
+
+.shadow {
+  box-shadow: 1px 1px 4px 1px rgb(209, 211, 212);
+  padding: 10px;
   border-radius: 5px;
+}
+
+label {
+  font-size: 15px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: rgb(25, 150, 25);
+  color: rgb(241, 235, 235);
+  min-width: 100px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(23, 126, 23);
+}
+
+.error {
+  border: 1px solid rgba(218, 58, 58, 0.237);
+  background-color: rgba(218, 58, 58, 0.237);
+  padding: 10px;
+  color: rgb(156, 24, 24);
+  border-radius: 6px;
+}
+
+.success {
+  border: 1px solid rgba(69, 218, 58, 0.237);
+  background-color: rgba(50, 192, 66, 0.294);
+  padding: 10px;
+  color: rgba(25, 125, 33, 0.922);
+  border-radius: 6px;
+}
+
+/* Boards */
+
+.boards {
+  width: 100%;
+}
+
+.boards .board {
+  margin-top: 20px;
+  padding-left: 40px;
+}
+
+.boards .board:hover {
+  background-color: #d0cdcd54;
+  cursor: pointer;
+}
+
+.task-container {
+  height: 90vh;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+.task-list {
+  height: inherit;
+  border: 1px solid #b7b3b3b9;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list .heading {
+  font-weight: bold;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+.task-list .heading h1 {
+  margin: 10px;
+}
+
+.todo-list .heading {
+  background-color: rgb(236, 236, 108);
+}
+.doing-list .heading {
+  background-color: rgba(163, 195, 241, 0.756);
+}
+.review-list .heading {
+  background-color: rgb(169, 247, 239);
+}
+.testing-list .heading {
+  background-color: rgb(209, 195, 249);
+}
+.done-list .heading {
+  background-color: rgb(86, 214, 126);
+}
+
+.task {
+  padding: 5px;
+  border-bottom: 1px solid #625858;
+  margin: 5px;
+}
+.task:hover {
+  background-color: #eeececd7;
+  cursor: pointer;
 }

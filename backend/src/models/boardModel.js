@@ -1,21 +1,23 @@
-const mongoose = require("mongoose")
-const objectId=mongoose.Schema.Types.ObjectId
+const mongoose = require("mongoose");
+const objectId = mongoose.Schema.Types.ObjectId;
 
-const boardSchema = new mongoose.Schema({
+const boardSchema = new mongoose.Schema(
+  {
     boardName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    
-   user: {
-        type: objectId,
-        ref: "user",
-        required:true
+    user: {
+      type: objectId,
+      ref: "user",
+      required: true,
     },
-    isdeleted:{
-        type:Boolean,
-        default:false
-    }
-}, { timestamps: true })
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("board", boardSchema)
+module.exports = mongoose.model("board", boardSchema);
