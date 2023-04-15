@@ -55,32 +55,24 @@ exports.taskUpdate = async (req, res) => {
     let taskId = req.params.taskId;
     console.log(taskId);
     let data = req.body;
-    let { title, status, description, board, members } = data;
+    let { title, status, description } = data;
     if (!mongoose.isValidObjectId(taskId))
       return res.status(400).send({ message: "Task Id is not valid" });
-    if (Object.keys(data).length == 0)
-      return res.status(400).json({ message: "Data to update is missing" });
-    //  console.log(data);
-    try {
-      await taskUpdateJoi.validateAsync(data);
-    } catch (err) {
-      return res.status(500).json({ message: err.message });
-    }
 
-    let updateTask = await Task.findByIdAndUpdate(
-      { _id: taskId, isDeleted: false },
+    const update = {};
+
+    title && title.trim() && (update.title = title);
+    description && description.trim() && (update.description = description);
+    status && (update.status = status);
+
+    let task = await Task.findByIdAndUpdate(
+      taskId,
       {
-        $set: {
-          title: title,
-          status: status,
-          description: description,
-          members: members,
-          board: board,
-        },
+        $set: update,
       },
       { new: true }
     );
-    return res.json({ updateTask });
+    return res.json({ task });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -94,8 +86,8 @@ exports.getTaskBytaskId = async function (req, res) {
     if (!mongoose.isValidObjectId(taskId))
       return res.status(400).send({ message: "taskId is not valid" });
 
-    let getTask = await Task.findById(taskId);
-    return res.json({ data: getTask });
+    let task = await Task.findById(taskId);
+    return res.json({ task });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

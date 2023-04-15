@@ -4,7 +4,9 @@
   "description": "\"This project is visual representation of tasks.\"",
   "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon src/index.js"
+    "dev": "npx nodemon backend/src/index.js",
+    "client": "cd client && npm start",
+    "build-client": "cd client && npm run build"
   },
   "author": "Sakshi kumari",
   "license": "ISC",

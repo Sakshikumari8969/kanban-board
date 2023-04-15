@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../styles/Task.css";
 import { api } from "../api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const TODO = "todo";
-const DOING = "doing";
-const REVIEW = "code review";
-const TESTING = "testing";
-const DONE = "done";
+import { taskStatus } from "../constants";
 
+const { DOING, DONE, REVIEW, TESTING, TODO } = taskStatus;
 //DOING, DONE, REVIEW, TESTING, TODO
 export default function TaskList() {
   const params = useParams();
-
   const [tasks, setTasks] = useState([]);
 
-  console.log(tasks);
-
-  const todoTasks = tasks.filter((task) => task.status === TODO);
-  const doingTasks = tasks.filter((task) => task.status === DOING);
-  const reviewTasks = tasks.filter((task) => task.status === REVIEW);
-  const doneTasks = tasks.filter((task) => task.status === DONE);
-  const testingTasks = tasks.filter((task) => task.status === TESTING);
+  const { doingTasks, doneTasks, reviewTasks, testingTasks, todoTasks } =
+    useMemo(() => {
+      const todoTasks = tasks.filter((task) => task.status === TODO);
+      const doingTasks = tasks.filter((task) => task.status === DOING);
+      const reviewTasks = tasks.filter((task) => task.status === REVIEW);
+      const doneTasks = tasks.filter((task) => task.status === DONE);
+      const testingTasks = tasks.filter((task) => task.status === TESTING);
+      return {
+        todoTasks,
+        doingTasks,
+        reviewTasks,
+        doneTasks,
+        testingTasks,
+      };
+    }, [tasks]);
 
   useEffect(() => {
     api
@@ -47,9 +51,13 @@ export default function TaskList() {
 
   const renderTask = (list) => {
     return list.map((task) => (
-      <div className="task" key={task._id}>
-        <h2>{task.title}</h2>
-        <p>{getShortDescription(task.description)}</p>
+      <div className="task shadow" key={task._id}>
+        <Link to={task._id}>
+          <div>
+            <h2>{task.title}</h2>
+            <p>{getShortDescription(task.description)}</p>
+          </div>
+        </Link>
       </div>
     ));
   };

@@ -48,8 +48,8 @@ router.get(
   authenticationMiddleware,
   taskController.getTaskBytaskId
 );
-router.put(
-  "/api/users/task/:taskId",
+router.patch(
+  "/api/tasks/:taskId",
   authenticationMiddleware,
   taskController.taskUpdate
 );
