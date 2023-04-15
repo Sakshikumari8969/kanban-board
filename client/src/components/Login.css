@@ -1,46 +1,45 @@
 .container {
-margin:auto;
-width:30%;
-border:3px solid rgb(3, 3, 16);
-border-radius: 5px;
-padding:20px;
-background-color: rgb(79, 84, 190);
-box-shadow: 0 0 10px rgb(4, 36, 52);
+  margin: auto;
+  width: 30%;
+  border: 3px solid rgb(3, 3, 16);
+  border-radius: 5px;
+  padding: 20px;
+  background-color: rgb(79, 84, 190);
+  box-shadow: 0 0 10px rgb(4, 36, 52);
 }
 
-
-.container h1{
-    color:rgb(233, 227, 36);
-    text-align: center;
+.container h1 {
+  color: rgb(233, 227, 36);
+  text-align: center;
 }
 
-.container label{
-    color:rgb(187, 255, 0)
+.container label {
+  color: rgb(187, 255, 0);
 }
 
 .container input[type="email"],
-.container input[type="password"]{
-    width:100%;
-    padding:12px 20px;
-    margin:8 px 0;
-    box-sizing: border-box;
-    border:3px solid rgb(15, 15, 13);
-    border-radius: 4px;
+.container input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8 px 0;
+  box-sizing: border-box;
+  border: 3px solid rgb(15, 15, 13);
+  border-radius: 4px;
 }
 
-.container button{
-background-color: rgb(32, 24, 58);
-color:rgb(238, 234, 243);
-padding:9 px;
-border:none;
-border-radius:4px;
-cursor:pointer;
-width:28%;
-font-size:10 px
+.container button {
+  background-color: rgb(32, 24, 58);
+  color: rgb(238, 234, 243);
+  padding: 9 px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 28%;
+  font-size: 10 px;
 }
-.container name{
-    border-radius:"4px"
+.container name {
+  border-radius: "4px";
 }
-.error-message{
-    color: rgb(61, 22, 22)(90, 13, 13)(43, 11, 11);
+.error-message {
+  color: rgb(61, 22, 22) (90, 13, 13) (43, 11, 11);
 }

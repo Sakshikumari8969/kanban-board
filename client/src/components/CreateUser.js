@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CreateUser.css"
+import "./CreateUser.css";
 
 export default function CreateUser() {
   const [name, setName] = useState("");
@@ -16,60 +16,66 @@ export default function CreateUser() {
       console.log(password);
       console.log(phone);
       alert("Thanks for registering here");
-      
-      setEmail("")
-      setName("")
-      setPassword("")
-      setPhone("")
-      
+
+      setEmail("");
+      setName("");
+      setPassword("");
+      setPhone("");
     } else {
       alert("Please enter the complete fields");
     }
-
   };
   return (
     <div className="create-container">
       <h1>User Registration Form</h1>
       <form onSubmit={handleSubmit}>
-        <section style={{color:"black",fontStyle:"italic",fontWeight:"bold"}}>
+        <section
+          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
+        >
           <label>Name : </label>
           <input
             type="text"
             value={name}
-          placeholder="name"
+            placeholder="name"
             onChange={(e) => setName(e.target.value)}
             required
           />
         </section>
         <br />
-        <section  style={{color:"black",fontStyle:"italic",fontWeight:"bold"}}>
+        <section
+          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
+        >
           <label>Email : </label>
-          <input 
+          <input
             type="email"
             value={email}
-           placeholder="email"
+            placeholder="email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </section>
         <br />
-        <section  style={{color:"black",fontStyle:"italic",fontWeight:"bold"}}>
+        <section
+          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
+        >
           <label>Password :</label>
           <input
             type="password"
             value={password}
-           placeholder="password"
+            placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </section>
-        <br/>
-        <section  style={{color:"black",fontStyle:"italic",fontWeight:"bold"}}>
+        <br />
+        <section
+          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
+        >
           <label>Phone :</label>
           <input
             type="number"
             value={phone}
-          placeholder="mobile number"
+            placeholder="mobile number"
             onChange={(e) => setPhone(e.target.value)}
             required
           />
@@ -91,7 +97,9 @@ export default function CreateUser() {
           </div>
         </div>
 
-        <button  style={{color:"black",fontWeight:"bold"}}type="submit">Submit</button>
+        <button style={{ color: "black", fontWeight: "bold" }} type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
