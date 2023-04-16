@@ -4,9 +4,12 @@
   "description": "\"This project is visual representation of tasks.\"",
   "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon backend/src/index.js",
-    "client": "cd client && npm start",
-    "build-client": "cd client && npm run build"
+    "start": "node backend/src/index.js",
+    "dev": "npx nodemon backend/src/index.js"
+  },
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": ">=16.0.0 <17.0.0"
   },
   "author": "Sakshi kumari",
   "license": "ISC",
@@ -18,8 +21,7 @@
     "joi": "^17.9.1",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.22"
   }
 }
-
-
