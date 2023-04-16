@@ -1,33 +1,56 @@
 import React, { useState } from "react";
 import "../styles/CreateUser.css";
+import {api} from  "../api"
+import {useNavigate} from "react-router-dom"
+// import { response } from "express";
 
 export default function CreateUser() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("9145212250");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessages, setSuccessMessage] = useState("");
+
+ 
+const navigate=useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name && email && password && phone) {
-      console.log(name);
-      console.log(email);
-      console.log(password);
-      console.log(phone);
-      alert("Thanks for registering here");
+    setErrorMessage("")
+    setSuccessMessage("")
 
-      setEmail("");
-      setName("");
-      setPassword("");
-      setPhone("");
-    } else {
-      alert("Please enter the complete fields");
-    }
-  };
+    
+api.post(`/api/accounts/register`,{
+  name:name,
+ 
+  email:email,
+  password:password,
+  phone:phone
+  
+}).then((response)=>{
+  // const data=response.data;
+  console.log(response);
+  setSuccessMessage("Registered Successfully")
+  navigate("/board/list")
+}).catch((error)=>{
+  console.log(error);
+setErrorMessage("registration failed")
+});
+console.log({name,email,password,phone});
+
+}
   return (
     <div className="create-container">
       <h1>User Registration Form</h1>
+
+    <hr />
+      {errorMessage && <p className="error">{errorMessage}</p>}
+
+      {successMessages && <p className="success">{successMessages}</p>}
+
+
       <form onSubmit={handleSubmit}>
         <section
           style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
@@ -104,3 +127,5 @@ export default function CreateUser() {
     </div>
   );
 }
+
+

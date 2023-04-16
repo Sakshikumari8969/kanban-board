@@ -8,7 +8,6 @@ const { connectDatabase } = require("./db");
 
 const { PORT } = process.env;
 connectDatabase();
-
 app.use(cors());
 app.use(express.json());
 

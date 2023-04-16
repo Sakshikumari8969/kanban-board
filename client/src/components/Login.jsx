@@ -48,7 +48,7 @@ export default function Login() {
   }
 
   return (
-    <div className="login-container shadow">
+    <div className="login-container shadow" style={{backgroundColor:" #ADD8E6"}}>
       <h1>User Login Form</h1>
       <hr />
       {errorMessage && <p className="error">{errorMessage}</p>}
