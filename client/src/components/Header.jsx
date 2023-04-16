@@ -8,7 +8,7 @@ export default function Header() {
       <Link to={"/board/list"}>Boards</Link>
       <Link to={"/accounts/login"}>Login</Link>
       <Link to={"/accounts/register"}>Register</Link>
-      <Link to={"#"}>Logout</Link>
+      <Link to={"/accounts/register"}>Logout</Link>
     </header>
   );
 }

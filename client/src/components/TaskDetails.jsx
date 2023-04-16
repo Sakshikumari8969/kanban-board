@@ -12,14 +12,14 @@ export default function TaskDetails() {
   const [users, setUsers] = useState();
 
   useEffect(() => {
-    api.get(`/api/tasks/${params.taskId}`).then((response) => {
+    api.get(`/tasks/${params.taskId}`).then((response) => {
       const task = response.data.task;
       setTask(task);
     });
   }, []);
 
   const changeStatus = (status) => {
-    api.patch(`/api/tasks/${task._id}`, { status: status }).then((response) => {
+    api.patch(`/tasks/${task._id}`, { status: status }).then((response) => {
       const task = response.data.task;
       setTask(task);
     });

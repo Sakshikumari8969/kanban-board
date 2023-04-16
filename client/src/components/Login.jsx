@@ -18,7 +18,7 @@ export default function Login() {
     setSuccessMessage("");
 
     api
-      .post(`/api/accounts/login`, {
+      .post(`/accounts/login`, {
         email: email,
         password: password,
       })

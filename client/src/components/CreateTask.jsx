@@ -16,7 +16,7 @@ export default function TaskCreate() {
   const params = useParams();
 
   useEffect(() => {
-    api.get(`/api/boards/${params.boardId}`).then((response) => {
+    api.get(`/boards/${params.boardId}`).then((response) => {
       const data = response.data;
       setBoard(data.board);
     });

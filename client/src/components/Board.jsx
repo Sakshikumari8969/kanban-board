@@ -18,7 +18,7 @@ export default function Board() {
     setSuccessMessage("");
 
     api
-      .post(`/api/boards`, {
+      .post(`/boards`, {
         boardName: boardName,
       })
       .then((response) => {

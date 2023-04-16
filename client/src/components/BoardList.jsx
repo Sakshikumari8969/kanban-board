@@ -6,7 +6,7 @@ export default function BoardList() {
   const [boardList, setBoardList] = React.useState([]);
   useEffect(() => {
     api
-      .get("/api/users/boards", {
+      .get("/users/boards", {
         headers: {
           authorization: localStorage.getItem("auth-token"),
         },

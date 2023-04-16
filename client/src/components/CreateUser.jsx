@@ -21,7 +21,7 @@ export default function CreateUser() {
     setSuccessMessage("");
 
     api
-      .post(`/api/accounts/register`, {
+      .post(`/accounts/register`, {
         name: name,
         email: email,
         password: password,

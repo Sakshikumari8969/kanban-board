@@ -32,7 +32,7 @@ export default function TaskList() {
 
   useEffect(() => {
     api
-      .get(`/api/boards/${params.boardId}/tasks`, {
+      .get(`/boards/${params.boardId}/tasks`, {
         headers: {
           authorization: localStorage.getItem("auth-token"),
         },
