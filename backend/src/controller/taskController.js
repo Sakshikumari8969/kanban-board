@@ -9,6 +9,29 @@ const {
 
 // ---------------------CREATE TASK -------------------------------------
 
+exports.assignTask = async function (req, res) {
+  const { task: taskId, user } = req.body;
+
+  let task = await Task.findOne({
+    _id: taskId,
+    members: {
+      $in: user,
+    },
+  });
+
+  if (!task) {
+    task = await Task.findByIdAndUpdate(
+      taskId,
+      { $push: { members: user } },
+      { new: true }
+    );
+  }
+
+  task.populate("members").then((response) => {
+    res.json({ task: response });
+  });
+};
+
 exports.taskCreate = async (req, res) => {
   try {
     let data = req.body;
@@ -53,7 +76,6 @@ exports.taskCreate = async (req, res) => {
 exports.taskUpdate = async (req, res) => {
   try {
     let taskId = req.params.taskId;
-    console.log(taskId);
     let data = req.body;
     let { title, status, description } = data;
     if (!mongoose.isValidObjectId(taskId))
@@ -86,7 +108,7 @@ exports.getTaskBytaskId = async function (req, res) {
     if (!mongoose.isValidObjectId(taskId))
       return res.status(400).send({ message: "taskId is not valid" });
 
-    let task = await Task.findById(taskId);
+    let task = await Task.findById(taskId).populate("members");
     return res.json({ task });
   } catch (error) {
     return res.status(500).json({ message: error.message });

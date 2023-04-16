@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../styles/Task.css";
 import { api } from "../api";
+
+import { GrAdd, GrFormAdd } from "react-icons/gr";
+import { MdAdd } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
 
 import { taskStatus } from "../constants";
@@ -56,13 +59,19 @@ export default function TaskList() {
           <div>
             <h2>{task.title}</h2>
             <p>{getShortDescription(task.description)}</p>
+
+            <div className="members-list-icons">
+              {task?.members?.map?.((member) => (
+                <span title={member.name}>{member.name.charAt(0)}</span>
+              ))}
+            </div>
           </div>
         </Link>
       </div>
     ));
   };
   return (
-    <div>
+    <div className="task-list-page-wrapper">
       <section className="task-container">
         <div className="task-list todo-list">
           <div className="heading">
@@ -97,6 +106,12 @@ export default function TaskList() {
           {renderTask(doneTasks)}
         </div>
       </section>
+
+      <Link to={"create"}>
+        <button className="create-task-button">
+          <MdAdd />
+        </button>
+      </Link>
     </div>
   );
 }

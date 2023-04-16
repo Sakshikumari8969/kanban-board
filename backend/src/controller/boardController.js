@@ -28,6 +28,20 @@ exports.createBoard = async function (req, res) {
   }
 };
 
+exports.getBoardById = (req, res) => {
+  Board.findById(req.params.id)
+    .then((board) => {
+      if (!board) {
+        return res.status(404).json({ message: "Board not found" });
+      } else {
+        return res.json({ board });
+      }
+    })
+    .catch((err) => {
+      return res.status(500).json({ error: err.message });
+    });
+};
+
 // -----------------------GET BOARD-----------------------------------
 
 exports.getBoards = async function (req, res) {
@@ -50,8 +64,6 @@ exports.getAllBoardByUserId = async function (req, res) {
     let user = req.user;
     let userId = user.id;
 
-    console.log(user, userId);
-
     const boards = await Board.find({
       user: userId,
       isDeleted: false,
@@ -69,9 +81,11 @@ exports.getAllBoardByUserId = async function (req, res) {
 // -----------------------GET TASK BY BOARD  ID-----------------------------------
 
 exports.getTaskByBoardId = async (req, res) => {
-  const tasks = await taskModel.find({
-    board: req.params.boardId,
-  });
+  const tasks = await taskModel
+    .find({
+      board: req.params.boardId,
+    })
+    .populate("members");
   return res.json({ tasks });
 };
 

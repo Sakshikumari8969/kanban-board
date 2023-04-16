@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/CreateUser.css";
-import {api} from  "../api"
-import {useNavigate} from "react-router-dom"
+import { api } from "../api";
+import { useNavigate } from "react-router-dom";
 // import { response } from "express";
 
 export default function CreateUser() {
@@ -12,49 +12,40 @@ export default function CreateUser() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessages, setSuccessMessage] = useState("");
 
- 
-const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setErrorMessage("")
-    setSuccessMessage("")
+    setErrorMessage("");
+    setSuccessMessage("");
 
-    
-api.post(`/api/accounts/register`,{
-  name:name,
- 
-  email:email,
-  password:password,
-  phone:phone
-  
-}).then((response)=>{
-  // const data=response.data;
-  console.log(response);
-  setSuccessMessage("Registered Successfully")
-  navigate("/board/list")
-}).catch((error)=>{
-  console.log(error);
-setErrorMessage("registration failed")
-});
-console.log({name,email,password,phone});
-
-}
+    api
+      .post(`/api/accounts/register`, {
+        name: name,
+        email: email,
+        password: password,
+        phone: phone,
+      })
+      .then((response) => {
+        setSuccessMessage("Registered Successfully");
+        navigate("/accounts/login");
+      })
+      .catch((error) => {
+        setErrorMessage("registration failed");
+      });
+  };
   return (
     <div className="create-container">
       <h1>User Registration Form</h1>
 
-    <hr />
+      <hr />
       {errorMessage && <p className="error">{errorMessage}</p>}
 
       {successMessages && <p className="success">{successMessages}</p>}
 
-
       <form onSubmit={handleSubmit}>
-        <section
-          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
-        >
+        <section>
           <label>Name : </label>
           <input
             type="text"
@@ -65,9 +56,7 @@ console.log({name,email,password,phone});
           />
         </section>
         <br />
-        <section
-          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
-        >
+        <section>
           <label>Email : </label>
           <input
             type="email"
@@ -78,9 +67,7 @@ console.log({name,email,password,phone});
           />
         </section>
         <br />
-        <section
-          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
-        >
+        <section>
           <label>Password :</label>
           <input
             type="password"
@@ -91,9 +78,7 @@ console.log({name,email,password,phone});
           />
         </section>
         <br />
-        <section
-          style={{ color: "black", fontStyle: "italic", fontWeight: "bold" }}
-        >
+        <section>
           <label>Phone :</label>
           <input
             type="number"
@@ -127,5 +112,3 @@ console.log({name,email,password,phone});
     </div>
   );
 }
-
-

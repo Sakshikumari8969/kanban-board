@@ -13,14 +13,14 @@ header {
   display: flex;
   gap: 10px;
   padding: 10px;
-  background-color: dodgerblue;
+  background-color: rgb(22, 98, 174);
 }
 
 header a {
-  border: 1px solid #115a75;
+  border: 1px solid #a9ddf0;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  color: white;
   border-radius: 10px;
 }
 header a:hover {
@@ -40,12 +40,24 @@ label {
   font-size: 15px;
 }
 
-input {
+input,
+select {
   display: block;
   width: 100%;
   margin-top: 8px;
   padding: 12px 20px;
   box-sizing: border-box;
+}
+
+.create-task-form {
+  width: 60%;
+  margin: auto;
+  padding: 30px;
+}
+
+textarea {
+  display: block;
+  width: 100%;
 }
 
 button {
@@ -138,7 +150,81 @@ button:hover {
   padding: 5px;
   margin: 5px;
 }
+
+.task .members-list-icons {
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  font-weight: bold;
+}
+.task .members-list-icons span {
+  background-color: green;
+  margin: 4px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
 .task:hover {
   background-color: #eeececd7;
   cursor: pointer;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.task-list-page-wrapper .create-task-button {
+  background-color: white;
+  border: 1px solid black;
+  min-width: 50px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  font-size: 100px;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+
+.task-list-page-wrapper .create-task-button:hover {
+  background-color: rgb(35, 103, 61);
+}
+
+.task-list-page-wrapper .create-task-button svg {
+  color: black;
+}
+
+.task-list-page-wrapper .create-task-button svg:hover {
+  color: white;
+}
+
+.task-details-wrapper .user-list {
+  padding: 0;
+  list-style: none;
+}
+
+.task-details-wrapper .user-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+.task-details-wrapper .user-list li:hover {
+  background-color: #e2dddd;
 }

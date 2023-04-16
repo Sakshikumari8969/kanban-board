@@ -30,14 +30,8 @@ export default function Login() {
         navigate("/board/list");
       })
       .catch((error) => {
-        console.log(error);
         setErrorMessage("Login failed");
       });
-
-    console.log({
-      email,
-      password,
-    });
   };
 
   function onEmailChange(e) {
@@ -48,7 +42,7 @@ export default function Login() {
   }
 
   return (
-    <div className="login-container shadow" style={{backgroundColor:" #ADD8E6"}}>
+    <div className="login-container shadow">
       <h1>User Login Form</h1>
       <hr />
       {errorMessage && <p className="error">{errorMessage}</p>}

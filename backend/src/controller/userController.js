@@ -2,14 +2,36 @@ const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { userJoi, loginJoi } = require("../validation/joiValidation");
-// console.log(userModel.find);
 // -------------------------CREATE USER---------------------------------
+
+exports.getAllUsers = async function (req, res, next) {
+  try {
+    const search = req.query.search;
+    const limit = req.query.limit || 10;
+    const page = req.query.page || 1;
+
+    const skip = (page - 1) * limit;
+
+    const where = {};
+    if (search) {
+      where.name = { $regex: search, $options: "i" };
+    }
+
+    let users = await userModel.find(where).limit(limit).skip(skip);
+
+    return res.status(200).json({ users });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 exports.createUser = async (req, res) => {
   try {
     let data = req.body;
     if (Object.keys(data).length == 0)
-      return res.status(400).json({ message: "Data to create user is missing" });
+      return res
+        .status(400)
+        .json({ message: "Data to create user is missing" });
 
     try {
       await userJoi.validateAsync(data);
@@ -26,9 +48,9 @@ exports.createUser = async (req, res) => {
           .status(400)
           .json({ message: `this email ${findInDb.email} already exists` });
       if (findInDb.phone == data.phone.trim())
-        return res
-          .status(400)
-          .json({ message: `this phone number ${findInDb.phone} already exists` });
+        return res.status(400).json({
+          message: `this phone number ${findInDb.phone} already exists`,
+        });
     }
 
     // passwordHashing :

@@ -15,6 +15,7 @@ const {
 
 router.post("/api/accounts/register", userController.createUser);
 router.post("/api/accounts/login", userController.loginUser);
+router.get("/api/users", userController.getAllUsers);
 
 //--------------------------BOARD ROUTER:
 
@@ -22,6 +23,11 @@ router.post(
   "/api/boards",
   authenticationMiddleware,
   boardController.createBoard
+);
+router.get(
+  "/api/boards/:id",
+  authenticationMiddleware,
+  boardController.getBoardById
 );
 router.get("/api/boards", boardController.getBoards);
 router.get(
@@ -43,6 +49,11 @@ router.put(
 //--------------------------TASK ROUTER:
 
 router.post("/api/tasks", authenticationMiddleware, taskController.taskCreate);
+router.post(
+  "/api/tasks/assign",
+  authenticationMiddleware,
+  taskController.assignTask
+);
 router.get(
   "/api/tasks/:taskId",
   authenticationMiddleware,

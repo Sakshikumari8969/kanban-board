@@ -5,7 +5,6 @@ import { api } from "../api";
 export default function BoardList() {
   const [boardList, setBoardList] = React.useState([]);
   useEffect(() => {
-    console.log("Now Board List is available");
     api
       .get("/api/users/boards", {
         headers: {
