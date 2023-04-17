@@ -6,10 +6,7 @@ const taskController = require("../controller/taskController");
 const boardController = require("../controller/boardController");
 const commentController = require("../controller/commentController");
 
-const {
-  authenticationMiddleware,
-  authorisationMiddleware,
-} = require("../middleware/middle");
+const { authenticationMiddleware } = require("../middleware/middle");
 
 //--------------------------USER ROUTER:
 

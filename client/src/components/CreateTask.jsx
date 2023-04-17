@@ -35,7 +35,7 @@ export default function TaskCreate() {
     if (!title && !description && !status && !board._id)
       return alert("Fill The form");
 
-    api.post("/api/tasks", task).then((response) => {
+    api.post("/tasks", task).then((response) => {
       navigate(-1);
     });
   };

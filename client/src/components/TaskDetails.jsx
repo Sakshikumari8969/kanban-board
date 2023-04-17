@@ -32,7 +32,7 @@ export default function TaskDetails() {
       return;
     }
 
-    api.get(`/api/users?search=${search}`).then((response) => {
+    api.get(`/users?search=${search}`).then((response) => {
       const users = response.data.users;
       setUsers(users);
     });
@@ -40,7 +40,7 @@ export default function TaskDetails() {
 
   function assignTask(user) {
     api
-      .post(`/api/tasks/assign`, { user: user._id, task: task._id })
+      .post(`/tasks/assign`, { user: user._id, task: task._id })
       .then((response) => {
         const task = response.data.task;
         setTask(task);

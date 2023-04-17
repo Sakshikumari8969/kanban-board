@@ -4,26 +4,7 @@ const bcrypt = require("bcrypt");
 const { userJoi, loginJoi } = require("../validation/joiValidation");
 // -------------------------CREATE USER---------------------------------
 
-exports.getAllUsers = async function (req, res, next) {
-  try {
-    const search = req.query.search;
-    const limit = req.query.limit || 10;
-    const page = req.query.page || 1;
 
-    const skip = (page - 1) * limit;
-
-    const where = {};
-    if (search) {
-      where.name = { $regex: search, $options: "i" };
-    }
-
-    let users = await userModel.find(where).limit(limit).skip(skip);
-
-    return res.status(200).json({ users });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-};
 
 exports.createUser = async (req, res) => {
   try {
@@ -99,4 +80,26 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// ----------------------------------------------------------
+// ----------------------------GET USER------------------------------
+exports.getAllUsers = async function (req, res, next) {
+  try {
+    const search = req.query.search;
+    const limit = req.query.limit || 10;
+    const page = req.query.page || 1;
+
+    const skip = (page - 1) * limit;
+
+    const where = {};
+    if (search) {
+      where.name = { $regex: search, $options: "i" };
+    }
+
+    let users = await userModel.find(where).limit(limit).skip(skip);
+
+    return res.status(200).json({ users });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+// -------------------------------

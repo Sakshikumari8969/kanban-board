@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import "../styles/Task.css";
 import { api } from "../api";
 
-import { GrAdd, GrFormAdd } from "react-icons/gr";
+// import { GrAdd, GrFormAdd } from "react-icons/gr";
 import { MdAdd } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
 

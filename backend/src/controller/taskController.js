@@ -7,7 +7,7 @@ const {
   taskUpdateJoi,
 } = require("../validation/joiValidation");
 
-// ---------------------CREATE TASK -------------------------------------
+// ---------------------ASSIGN TASK -------------------------------------
 
 exports.assignTask = async function (req, res) {
   const { task: taskId, user } = req.body;
@@ -31,6 +31,8 @@ exports.assignTask = async function (req, res) {
     res.json({ task: response });
   });
 };
+
+// --------------CREATE TASK-----------------
 
 exports.taskCreate = async (req, res) => {
   try {

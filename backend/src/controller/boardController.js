@@ -28,6 +28,8 @@ exports.createBoard = async function (req, res) {
   }
 };
 
+// ------------------GET BOARD BY ID-----------------
+
 exports.getBoardById = (req, res) => {
   Board.findById(req.params.id)
     .then((board) => {
@@ -57,7 +59,7 @@ exports.getBoards = async function (req, res) {
   }
 };
 
-// -----------------------GET BOARD BY ID-----------------------------------
+// -----------------------GET BOARD BY USER ID-----------------------------------
 
 exports.getAllBoardByUserId = async function (req, res) {
   try {
